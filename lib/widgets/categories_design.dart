@@ -29,37 +29,20 @@ class _CategoriesDesignWidgetState extends State<CategoriesDesignWidget> {
       splashColor: Colors.amber,
       child: Padding(
         padding: const EdgeInsets.all(5.0),
-        child:Container(
-          height: MediaQuery.of(context).size.height*0.32,
-          width: MediaQuery.of(context).size.width*0.48,
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft:Radius.circular(25) ,
-                topRight:Radius.zero ,
-                bottomLeft:Radius.zero,
-                bottomRight: Radius.circular(25),
-              )
-          ),
-          child: Column(
-            children: [
-              Divider(
-                height: 4,
-                thickness: 3,
-                color: Colors.grey[300],
-              ),
-              CircleAvatar(backgroundImage: NetworkImage( widget.model!.thumbnailUrl!),radius: MediaQuery.of(context).size.width*0.15,),
-              const SizedBox(height: 3,),
-              Text(
-                widget.model!.menuTitle!,
-                style: const TextStyle(
-                  color: Colors.cyan,
-                  fontSize: 20,
-                ),
-              ),
+        child:Column(
+          children: [
 
-            ],
-          ),
+            CircleAvatar(backgroundImage: NetworkImage( widget.model!.thumbnailUrl!),radius: MediaQuery.of(context).size.width*0.15,),
+            const SizedBox(height: 3,),
+            Text(
+              widget.model!.menuTitle!,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
+
+          ],
         ),
       ),
     );
