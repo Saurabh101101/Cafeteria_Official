@@ -23,7 +23,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
 
       if(firebaseAuth.currentUser!=null)
         {
-         Navigator.push(context, MaterialPageRoute(builder: (c)=>const HomeScreen()));
+         Navigator.push(context, MaterialPageRoute(builder: (c)=> HomeScreen()));
         }
       else{
         Navigator.push(context, MaterialPageRoute(builder: (c)=>const MyLogin()));

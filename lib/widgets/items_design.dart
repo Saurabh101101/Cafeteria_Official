@@ -45,31 +45,41 @@ class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
           ),
           child: Column(
             children: [
-              Divider(
-                height: 4,
-                thickness: 3,
-                color: Colors.grey[300],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CircleAvatar(backgroundImage: NetworkImage( widget.model!.thumbnailUrl!),radius: MediaQuery.of(context).size.width*0.17,),
               ),
-              CircleAvatar(backgroundImage: NetworkImage( widget.model!.thumbnailUrl!),radius: MediaQuery.of(context).size.width*0.15,),
               const SizedBox(height: 3,),
-              Text(
-                widget.model!.title!,
-                style: const TextStyle(
-                  color: Colors.cyan,
-                  fontSize: 20,
-                ),
+              Padding(
+                padding: const EdgeInsets.all(1.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(widget.model!.title!,style:TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    )
+                    ),
+                    SizedBox(width:10 ),
+                  ],
+                ),),
+              SizedBox(height: 5),
+              Padding(
+                padding: const EdgeInsets.only(left: 8,right: 8,bottom:4,top: 4),
+                child: Text(widget.model!.shortInfo!,style: TextStyle(
+                  fontStyle: FontStyle.italic,
+                  fontSize: 16,color: Colors.cyan,
+                ),),
               ),
-              const SizedBox(height: 1,),
-              Text(
-                widget.model!.price!.toString(),
-                style: const TextStyle(
-                  color: Colors.cyan,
-                  fontSize: 20,
-                ),
-              ),
-
-            ],
-          ),
+              SizedBox(height: 12),
+              Padding(
+                padding: const EdgeInsets.only(left: 8,right: 8,bottom:4,top: 4),
+                child: Text("Price  ₹"+ widget.model!.price.toString(),style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),),
+              ),],
+          )
         ),
       ),
     );

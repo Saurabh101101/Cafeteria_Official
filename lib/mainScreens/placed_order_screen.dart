@@ -52,7 +52,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
       clearCartNow(context);
       setState(() {
         orderId="";
-        Navigator.push(context, MaterialPageRoute(builder: (context)=> const HomeScreen()));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>  HomeScreen()));
         Fluttertoast.showToast(msg: "Congrats , Order is placed successfully ! ");
       });
     });
