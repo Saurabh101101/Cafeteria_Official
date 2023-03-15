@@ -22,47 +22,53 @@ class ItemsScreen extends StatefulWidget {
 class _ItemsScreenState extends State<ItemsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Container(constraints: BoxConstraints.expand(),
+    decoration: BoxDecoration(
+    image: DecorationImage(
+    image: AssetImage('assets/images/bg.png'), fit: BoxFit.cover,) ),
+    child: Scaffold(
+    backgroundColor: Colors.transparent,
 
       appBar: MyAppBar(sellerUID: widget.model!.sellerUID),
-      body: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: ListTile(
-                title: Text("${sharedPreferences!.getString("name")}, ORDER NOW?",textAlign: TextAlign.center,),
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: SizedBox(height: 5,)
               ),
-            ),
-            StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance.
-                collection("sellers").doc("DpuAj3utfVef9klNf5Pyb3tTwyH3")
-                    .collection("categories").doc(widget.model!.menuId).collection("items")
-                    .orderBy("publishedDate", descending: true)
-                    .snapshots(),
-                builder: (context,snapshot) {
-                  return !snapshot.hasData
-                      ? SliverToBoxAdapter(
-                    child: Center(
-                      child: circularProgress(),
-                    ),
-                  )
-                      :SliverStaggeredGrid.countBuilder(crossAxisCount: 2, staggeredTileBuilder: (c)=>StaggeredTile.fit(1),
-                    itemBuilder: (context, index) {
-                      Items model =Items.fromJson(
-                        snapshot.data!.docs[index].data()! as Map<String,dynamic>,
-                      );
-                      return ItemsDesignWidget(
-                        model: model,
-                        context: context,
-                      );
-                    },
-                    itemCount: snapshot.data!.docs.length,
-                  );
-                }
-            )
-          ]
+              StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance.
+                  collection("sellers").doc("DpuAj3utfVef9klNf5Pyb3tTwyH3")
+                      .collection("categories").doc(widget.model!.menuId).collection("items")
+                      .orderBy("publishedDate", descending: true)
+                      .snapshots(),
+                  builder: (context,snapshot) {
+                    return !snapshot.hasData
+                        ? SliverToBoxAdapter(
+                      child: Center(
+                        child: circularProgress(),
+                      ),
+                    )
+                        :SliverStaggeredGrid.countBuilder(crossAxisCount: 2, staggeredTileBuilder: (c)=>StaggeredTile.fit(1),
+                      itemBuilder: (context, index) {
+                        Items model =Items.fromJson(
+                          snapshot.data!.docs[index].data()! as Map<String,dynamic>,
+                        );
+                        return ItemsDesignWidget(
+                          model: model,
+                          context: context,
+                        );
+                      },
+                      itemCount: snapshot.data!.docs.length,
+                    );
+                  }
+              )
+            ]
 
+        ),
       ),
-    );
+    ));
 
   }
 }

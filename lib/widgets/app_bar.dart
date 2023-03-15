@@ -28,11 +28,15 @@ class _MyAppBarState extends State<MyAppBar> {
           Navigator.pop(context);
         },
       ),
-      title: const Text("CAFETERIA",style: TextStyle(
-        letterSpacing: 3,
-      ),),
-      centerTitle: true,
-      automaticallyImplyLeading: true,
+      title: const Text("C A F E T E R í A",
+      style: TextStyle(
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'Montserrat'
+      ), ),
+    centerTitle:true ,
+    backgroundColor: Colors.teal[900]?.withOpacity(0.85),
+    elevation: 0,
       actions: [
         Stack(
           children: [

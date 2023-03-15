@@ -1,6 +1,7 @@
 import 'package:cafeteria_official/assistantMethods/assistant_methods.dart';
 import 'package:cafeteria_official/assistantMethods/cartItemCounter.dart';
 import 'package:cafeteria_official/assistantMethods/total_amount.dart';
+import 'package:cafeteria_official/mainScreens/home.dart';
 import 'package:cafeteria_official/mainScreens/placed_order_screen.dart';
 import 'package:cafeteria_official/model/items.dart';
 import 'package:cafeteria_official/widgets/app_bar.dart';
@@ -41,6 +42,7 @@ class _CartScreenState extends State<CartScreen> {
               ()
           {
             clearCartNow(context);
+            //Navigator.push(context, MaterialPageRoute(builder: (c)=>HomeScreen()));
           },
         ),
         title: const Text("CAFETERIA",style: TextStyle(

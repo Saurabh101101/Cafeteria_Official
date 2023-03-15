@@ -85,7 +85,7 @@ class _MyLoginState extends State<MyLogin> {
         await sharedPreferences!.setStringList("userCart", userCartList);
 
         Navigator.pop(context);
-        Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
+        Navigator.push(context, MaterialPageRoute(builder: (c)=>  HomeScreen()));
       }
       else{
         firebaseAuth.signOut();

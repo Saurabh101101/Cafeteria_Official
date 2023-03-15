@@ -1,4 +1,5 @@
 import 'package:cafeteria_official/assistantMethods/cartItemCounter.dart';
+import 'package:cafeteria_official/mainScreens/home.dart';
 import 'package:cafeteria_official/splash_screen/splash.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -142,7 +143,7 @@ clearCartNow(context)
     sharedPreferences!.setStringList("userCart", emptyList!);
     Provider.of<CartItemCounter>(context,listen: false).displayCartCounter();
 
-    Navigator.push(context, MaterialPageRoute(builder: (c)=>const MySplashScreen()));
+    Navigator.push(context, MaterialPageRoute(builder: (c)=> MySplashScreen()));
 
     Fluttertoast.showToast(msg: "Cart has been cleared Successfully ! ");
   });

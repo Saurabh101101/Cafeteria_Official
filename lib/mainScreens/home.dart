@@ -1,4 +1,5 @@
 
+import 'package:cafeteria_official/mainScreens/cart_screen.dart';
 import 'package:cafeteria_official/mainScreens/history_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,8 @@ import '../widgets/custom_animated_bottom_bar.dart';
 import 'home_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final String? sellerUID;
+  HomeScreen({this.sellerUID});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -68,11 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget getBody() {
     List<Widget> pages = [
       MyHomeScreen(),
-      Container(
-        alignment: Alignment.center,
-        child: Text("Users",
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
-      ),
+      Container(),
       HistoryScreen()
 
     ];
