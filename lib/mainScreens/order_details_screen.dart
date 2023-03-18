@@ -49,7 +49,10 @@ class _OrderDetailsState extends State<OrderDetails> {
                   Text("Order At : ${DateFormat("dd MMMM, yyyy - hh:mm aa")
                       .format(DateTime.fromMillisecondsSinceEpoch(int.parse(dataMap["orderTime"])))}"),
                   Divider(thickness: 4,),
-                  orderStatus=="ended"?Image.asset("assets/images/ready.png"):Image.asset("assets/images/placed.webp"),
+
+                  orderStatus=="normal"?Image.asset("assets/images/placed.png"):orderStatus=="ready"?Image.asset("assets/images/ready1.jpg"):Image.asset("assets/images/picked.png"),
+
+
                   Center(
                     child: InkWell(
                       onTap: ()
