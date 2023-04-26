@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/custom_animated_bottom_bar.dart';
 import 'home_screen.dart';
+import 'my_orders_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final String? sellerUID;
@@ -49,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavyBarItem(
             icon: Icon(Icons.shopping_cart),
-            title: Text('CART', style: TextStyle(color: Colors.white)),
+            title: Text('MY ORDERS', style: TextStyle(color: Colors.white)),
             activeColor: Colors.purpleAccent,
             inactiveColor: _inactiveColor,
             textAlign: TextAlign.center,
@@ -70,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget getBody() {
     List<Widget> pages = [
       MyHomeScreen(),
-      Container(),
+      MyOrdersScreen(),
       HistoryScreen()
 
     ];

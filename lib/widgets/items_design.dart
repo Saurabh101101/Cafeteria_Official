@@ -32,7 +32,7 @@ class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
       child: Padding(
         padding: const EdgeInsets.all(5.0),
         child:Container(
-          height: MediaQuery.of(context).size.height*0.32,
+          height: MediaQuery.of(context).size.height*0.35,
           width: MediaQuery.of(context).size.width*0.48,
           decoration: BoxDecoration(
               color: Colors.white,
@@ -56,7 +56,7 @@ class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(widget.model!.title!,style:TextStyle(
-                      fontSize: 22,
+                      fontSize: 16.5,
                       fontWeight: FontWeight.bold,
                     )
                     ),
@@ -74,7 +74,7 @@ class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
               SizedBox(height: 12),
               Padding(
                 padding: const EdgeInsets.only(left: 8,right: 8,bottom:4,top: 4),
-                child: Text("Price  ₹"+ widget.model!.price.toString(),style: TextStyle(
+                child: Text("Price :  ₹"+ widget.model!.price.toString(),style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),),

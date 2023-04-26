@@ -37,7 +37,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
 
             Padding(
               padding: const EdgeInsets.all(18.0),
-              child: NumberInputPrefabbed.roundedButtons(
+              child: NumberInputPrefabbed.squaredButtons(
                 controller: counterTextEditingController,
                 incDecBgColor: Colors.amber,
                 min: 1,
@@ -51,7 +51,8 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 widget.model!.title.toString(),
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20,color: Colors.teal),
               ),
             ),
 
@@ -60,7 +61,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
               child: Text(
                 widget.model!.longDescription.toString(),
                 textAlign: TextAlign.justify,
-                style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
+                style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 16),
               ),
             ),
 
@@ -68,7 +69,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 widget.model!.price.toString() + " Rs",
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20,color: Colors.teal),
               ),
             ),
 
@@ -90,16 +91,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                 },
                 child: Container(
                   decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Colors.cyan,
-                          Colors.amber,
-                        ],
-                        begin:  FractionalOffset(0.0, 0.0),
-                        end:  FractionalOffset(1.0, 0.0),
-                        stops: [0.0, 1.0],
-                        tileMode: TileMode.clamp,
-                      )
+                      color: Colors.teal,
                   ),
                   width: MediaQuery.of(context).size.width - 13,
                   height: 50,

@@ -113,15 +113,15 @@ class _MyLoginState extends State<MyLogin> {
         body: Stack(
           children: [
             Container(
-              padding: EdgeInsets.only(left: 35,top:MediaQuery.of(context).size.height*0.1),
+              padding: EdgeInsets.only(left: 35,top:MediaQuery.of(context).size.height*0.15),
               child: Text('Welcome',style: TextStyle(
                 color: Color(0xFFFFFFFF),
-                fontSize: 40,
+                fontSize: 50,
               ),),
               
             ),
             Padding(
-              padding: EdgeInsets.only(left: 35,top:MediaQuery.of(context).size.height*0.20),
+              padding: EdgeInsets.only(left: 35,top:MediaQuery.of(context).size.height*0.30),
               child: Row(
                 children: [
                   Text('SIGN IN',style: TextStyle(
@@ -132,7 +132,7 @@ class _MyLoginState extends State<MyLogin> {
                 ],
               ),
             ),
-            Padding(
+            /*Padding(
               padding:  EdgeInsets.only(left: 35,right: 35,top:MediaQuery.of(context).size.height*0.30),
               child: SizedBox(
                 height: 45,
@@ -182,10 +182,10 @@ class _MyLoginState extends State<MyLogin> {
                   Container(height:1.0,width:100.0,color:Colors.white),
                 ],
               ),
-            ),
+            ),*/
             SingleChildScrollView(
               child: Container(
-                padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.45,right: 35,left: 35),
+                padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.40,right: 35,left: 35),
                 child: Column(
                   children: [
                     Form(
@@ -203,7 +203,7 @@ class _MyLoginState extends State<MyLogin> {
                                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(15))
                               ),
                             ),
-                            SizedBox(height: 30),
+                            SizedBox(height: 45),
                             TextField(
                               obscureText: _isHidden,
                               controller: passwordController,
@@ -220,7 +220,7 @@ class _MyLoginState extends State<MyLogin> {
                     ),),
 
                     SizedBox(
-                      height: 30,
+                      height: 45,
                     ),
                     SizedBox(
                       height: 45,

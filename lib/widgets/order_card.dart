@@ -43,10 +43,13 @@ Widget placedOrderDesignWidget(Items model,BuildContext context,separateQuantity
   return Container(
     width: MediaQuery.of(context).size.width,
     height: 120,
-    color: Colors.grey,
+    color: Colors.teal[700],
     child: Row(
       children: [
-        Image.network(model.thumbnailUrl!,width: 120,),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.network(model.thumbnailUrl!,width: 120,height: 120,),
+        ),
         SizedBox(width: 10,),
         Expanded(child:  Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,28 +57,45 @@ Widget placedOrderDesignWidget(Items model,BuildContext context,separateQuantity
             Row(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Expanded(child: Text(
-                  model.title!
-                ,style:const TextStyle(color: Colors.black12,fontSize:16,fontWeight: FontWeight.bold),),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    model.title!
+                  ,style:const TextStyle(color: Colors.white,fontSize:18,fontWeight: FontWeight.bold),),
                 ),
                 SizedBox(width: 10,),
-                const Text("Rs "
-                  ,style: TextStyle(color: Colors.blue,fontSize:16,fontWeight: FontWeight.bold),),
-                Text(
-                  model.price.toString()!
-                  ,style:const TextStyle(color: Colors.black12,fontSize:16,fontWeight: FontWeight.bold),),
+
               ],
             ),
-            Row(
-              children: [
-                const Text(
-                  " x "
-                  ,style:const TextStyle(color: Colors.black12,fontSize:16,fontWeight: FontWeight.bold),),
-                Expanded(child: Text(
-                  separateQuantityList
-                  ,style:const TextStyle(color: Colors.black12,fontSize:16,fontWeight: FontWeight.bold),),)
-              ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  const Text(
+                    " x "
+                    ,style:const TextStyle(color: Colors.white,fontSize:16,fontWeight: FontWeight.bold),),
+                  Expanded(child: Text(
+                    separateQuantityList
+                    ,style:const TextStyle(color: Colors.white,fontSize:18,fontWeight: FontWeight.bold),),),
+
+
+                ],
+              ),
+            ),
+            SizedBox(height: 6,),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Row(
+                children: [
+                  const Text("Rs "
+                    ,style: TextStyle(color: Colors.white,fontSize:18,fontWeight: FontWeight.bold),),
+                  Text(
+                    model.price.toString()!
+                    ,style:const TextStyle(color: Colors.white,fontSize:18,fontWeight: FontWeight.bold),),
+                ],
+              ),
             )
+
           ],
         ),
         ),

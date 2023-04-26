@@ -19,7 +19,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
 
   String orderId=DateTime.now().millisecondsSinceEpoch.toString();
 
-  addOrderDetails()
+  addOrderDetails(String pickup)
   {
     writeOrderDetailsForUser({
       "totalAmount":widget.totalAmount,
@@ -31,6 +31,8 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
       "sellerUID": widget.sellerUID,
       "status": "normal",
       "orderId":orderId,
+      "Pickup Time":pickup,
+
 
     });
 
@@ -45,6 +47,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
       "sellerUID": widget.sellerUID,
       "status": "normal",
       "orderId":orderId,
+      "Pickup Time":pickup,
 
 
 
@@ -69,23 +72,59 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
     await FirebaseFirestore.instance.collection("orders").doc(orderId).set(data);
   }
 
+  bool? check1 = false;
+  TimeOfDay time=TimeOfDay(hour: 10, minute: 30);
+
+  String date= "${DateTime.now().day} / ${DateTime.now().month} / ${DateTime.now().year}  ";
+
+
+
 
   Widget build(BuildContext context) {
+    String scheduledTime=date+time.format(context).toString();
+
     return Material(
       child: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset("assets/images/google.png"),
+            Row(
+              children: [
+                Checkbox(
+                    value: check1, //set variable for value
+                    onChanged: (bool? value) {
+                      setState(() {
+                        check1 = value;
+                      });
+                    }),
+                Text("Check This to Schedule Order"),
+              ],
+            ),
+            Row(children: [
+              Text("Set Time :"),
+              check1==true?
+              IconButton(onPressed: ()async{
+                TimeOfDay? newTime= await showTimePicker(context: context, initialTime: time);
+                if(newTime==null) return;
+                setState(()=>time=newTime,
+                );
+
+
+              }, icon: Icon(Icons.alarm)):
+              Icon(Icons.alarm)
+            ],),
         FloatingActionButton.extended(
           onPressed: ()
           {
-            addOrderDetails();
+            addOrderDetails(scheduledTime);
           },
           label: const Text("Place Order"),
           backgroundColor: Colors.teal[900],
           icon: const Icon(Icons.confirmation_number_outlined),
         ),
+            Text(date+time.format(context).toString()),
+
+
           ],
         ),
       ),

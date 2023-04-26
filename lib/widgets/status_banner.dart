@@ -14,28 +14,17 @@ class StatusBanner extends StatelessWidget {
   IconData? iconData;
 
   status! ? iconData=Icons.done :iconData=Icons.cancel;
-  status! ?message="Successful":message="Unsuccessful";
+  status! ?message="Successfully":message="Unsuccessful";
 
     return Container(
       height: 40,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          GestureDetector(
-            onTap: ()
-      {
-        Navigator.push(context, MaterialPageRoute(builder: (c)=> HomeScreen()));
-      },
-            child: const Icon(
-              Icons.arrow_back,
-              color: Colors.blue,
-            ),
-          ),
-         const SizedBox(width: 20,),
           Text(
-            orderStatus=="ended"? "Order Ready $message" :"Order Placed $message",
+            orderStatus=="ready"? "Order Ready $message" :"Order Placed $message",
             style: TextStyle(
-              fontSize: 16
+              fontSize: 16,color: Colors.red
             ),
           ),
           const SizedBox(width: 5,),
@@ -43,7 +32,7 @@ class StatusBanner extends StatelessWidget {
           child: Center(
             child: Icon(
               iconData,
-              color: Colors.teal[900],
+              color: Colors.red,
             ),
           ),
           )

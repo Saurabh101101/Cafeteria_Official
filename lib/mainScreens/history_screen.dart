@@ -17,11 +17,16 @@ class _HistoryScreenState extends State<HistoryScreen> {
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
       appBar: AppBar(
-        title: const Text("MY HISTORY",style: TextStyle(
-          letterSpacing: 3,
-        ),),
-        centerTitle: true,
-        automaticallyImplyLeading: true,
+        title: Text("M Y   H I S T O R Y",
+          style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Montserrat'
+          ), ),
+        centerTitle:true ,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.teal[900]?.withOpacity(0.85),
+        elevation: 0,
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance

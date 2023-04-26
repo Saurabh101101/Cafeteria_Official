@@ -16,12 +16,17 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
-      appBar: AppBar(
-    title: const Text("MY ORDERS",style: TextStyle(
-    letterSpacing: 3,
-    ),),
-    centerTitle: true,
-    automaticallyImplyLeading: true,
+      appBar:  AppBar(
+        title: Text("M Y   O R D E R S",
+          style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Montserrat'
+          ), ),
+        centerTitle:true ,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.teal[900]?.withOpacity(0.85),
+        elevation: 0,
     ),
     body: StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance

@@ -25,7 +25,9 @@ class _SearchScreenState extends State<SearchScreen> {
   
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: TextField(
+      appBar: AppBar(
+          backgroundColor: Colors.teal[900]
+          ,title: TextField(
         onChanged: (textEntered)
             {
 
@@ -36,9 +38,12 @@ class _SearchScreenState extends State<SearchScreen> {
               initSearch(textEntered);
             },
         decoration: InputDecoration(
+
           hintText: "Search..",
+          hintStyle: TextStyle(color: Colors.white),
+
           border: InputBorder.none,
-          suffixIcon: IconButton(icon: Icon(Icons.search),
+          suffixIcon: IconButton(icon: Icon(Icons.search,color: Colors.white,),
           onPressed: (){
             initSearch(itemNameText);
           },

@@ -1,3 +1,4 @@
+import 'package:cafeteria_official/mainScreens/profile_screen.dart';
 import 'package:cafeteria_official/mainScreens/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cafeteria_official/global/global.dart';
@@ -8,6 +9,8 @@ import 'package:cafeteria_official/widgets/progress_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
+import '../authentication/login.dart';
 
 
 
@@ -27,7 +30,6 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
             image: AssetImage('assets/images/bg.png'), fit: BoxFit.cover,) ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        drawer: MyDrawer(),
         appBar: AppBar(
           title: Text("C A F E T E R í A",
             style: TextStyle(
@@ -36,18 +38,75 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                 fontFamily: 'Montserrat'
             ), ),
           centerTitle:true ,
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.teal[900]?.withOpacity(0.85),
           elevation: 0,
           actions: <Widget>[
+
             Padding(
-                padding: const EdgeInsets.only(right: 20),
+              padding: const EdgeInsets.only(right: 10),
+              child: PopupMenuButton<int>(
+
                 child: CircleAvatar(
                   backgroundImage:  NetworkImage(
                       sharedPreferences!.getString("photoUrl")!
                   ),
                   radius: 20,
-                )
-            ), // avatar added here
+                ),
+                itemBuilder: (context)=>[
+                PopupMenuItem(
+                  value:1,
+                  child: Row(
+                  children: [
+                    Icon(Icons.edit),
+                    Text("Edit Profile",style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),),
+                  ],
+                ),),
+                PopupMenuItem(
+                  value:2,
+                  child: Row(
+                  children: [
+                    Icon(Icons.logout),
+                    Text("Logout",style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),),
+                  ],
+                ),),
+                PopupMenuItem(
+                  value:3,
+                  child: Row(
+                  children: const [
+                    Icon(Icons.close),
+                    Text("Close",style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),),
+                  ],
+                ),),
+              ],
+                offset: Offset(0,0),
+                color: Colors.black,
+                elevation: 2,
+                onSelected: (value) {
+                  if (value == 1) {
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (c) => const ProfileScreen()));
+                  }
+                  else if (value == 2) {
+                    {
+                      firebaseAuth.signOut().then((value) {
+                        Navigator.push(context, MaterialPageRoute(
+                            builder: (c) => const MyLogin()));
+                      });
+                    }
+                  };
+                }
+              ),
+            ),// avatar added here
           ],
         ),
         // backgroundColor: Colors.transparent,
