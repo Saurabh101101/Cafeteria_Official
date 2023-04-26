@@ -24,37 +24,47 @@ class _CartItemDesignState extends State<CartItemDesign> {
         child: Container(
           height: 150,
           width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            border:Border.all(width: 2)
+          ),
           child: Row(
             children: [
               Image.network(widget.model!.thumbnailUrl!,width: 140, height: 120,),
               const SizedBox(width: 6,),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(widget.model!.title!,style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey
-                  ),),
-                  const SizedBox(height: 1,),
-                  Text(widget.model!.price!.toString(),style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey
-                  ),),
-                  const SizedBox(height: 1,),
-                  Row(
-                    children: [
-                      const Text("x ",style: TextStyle(
-                          fontSize: 22,
-                          color: Colors.grey
-                      ),),
-                      Text(widget.quantityNumber.toString(),style: const TextStyle(
-                          fontSize: 22,
-                          color: Colors.grey
-                      ),),
-                    ],
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(widget.model!.title!,style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.teal,
+                      fontWeight: FontWeight.bold,
+                    ),),
+                    const SizedBox(height: 5,),
+                    Text("Rs "+widget.model!.price!.toString(),style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.teal,
+                      fontWeight: FontWeight.bold,
+                    ),),
+                    const SizedBox(height: 5,),
+                    Row(
+                      children: [
+                        const Text("x ",style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.teal,
+                          fontWeight: FontWeight.bold,
+                        ),),
+                        Text(widget.quantityNumber.toString(),style: const TextStyle(
+                          fontSize: 18,
+                          color: Colors.teal,
+                          fontWeight: FontWeight.bold,
+                        ),),
+                      ],
+                    ),
+                  ],
+                ),
               )
             ],
           ),
