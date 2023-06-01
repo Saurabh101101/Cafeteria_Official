@@ -71,6 +71,8 @@ class _CartScreenState extends State<CartScreen> {
       "status": "normal",
       "orderId":orderId,
       "pickUpTime":date,
+      "orderUserName":sharedPreferences!.getString("name"),
+      "userPhone":sharedPreferences!.getString("phone"),
 
     });
 
@@ -86,6 +88,8 @@ class _CartScreenState extends State<CartScreen> {
       "status": "normal",
       "orderId":orderId,
       "pickUpTime":date,
+      "orderUserName":sharedPreferences!.getString("name"),
+      "userPhone":sharedPreferences!.getString("phone"),
 
 
 
@@ -112,9 +116,11 @@ class _CartScreenState extends State<CartScreen> {
 
   bool? check1 = false;
   TimeOfDay time=TimeOfDay(hour: 10, minute: 30);
-  String date= "${DateTime.now().day} / ${DateTime.now().month} / ${DateTime.now().year}  ";
+  DateTime now = DateTime.now();
+
 
   Widget build(BuildContext context) {
+    String date= DateFormat('dd MMMM, yyyy').format(now);
 
 
     return Scaffold(
@@ -212,7 +218,7 @@ class _CartScreenState extends State<CartScreen> {
             child: Consumer2<TotalAmount, CartItemCounter>(builder: (context,amountProvider,cartProvider,c){
               return Padding(padding: EdgeInsets.all(8),
               child: Center(
-                child: cartProvider.count==0?Container():Text("Total Price: ${amountProvider.tAmount.toString()}",
+                child: cartProvider.count==0?Container():Text("Total Price: ${amountProvider.tAmount.toString()} Rs",
                 style: const TextStyle(
                   color: Colors.red,
                   fontSize: 20,

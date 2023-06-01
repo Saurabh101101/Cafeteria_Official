@@ -1,6 +1,7 @@
 
 import 'dart:io';
-
+import 'package:cafeteria_official/assistantMethods/notification_services.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:cafeteria_official/widgets/error_dialog.dart';
 import 'package:cafeteria_official/widgets/loading_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -26,6 +27,7 @@ class MySignup extends StatefulWidget {
 
 class MySignupState extends State <MySignup> {
    bool _isHidden1=true;
+   NotificationServices notificationServices=NotificationServices();
 
   void _toggle1()
   {
@@ -41,6 +43,7 @@ class MySignupState extends State <MySignup> {
   XFile? imageXFile;
   final ImagePicker _picker=ImagePicker();
   String usersImageUrl="";
+  String mtoken="";
 
   Future<void> _getImage() async
   {
@@ -63,7 +66,7 @@ class MySignupState extends State <MySignup> {
         );
       }
     else{
-      if(nameController.text.isNotEmpty && phoneController.text.isNotEmpty && emailController.text.isNotEmpty && passwordController.text.isNotEmpty)
+      if(nameController.text.isNotEmpty && phoneController.text.isNotEmpty && emailController.text.isNotEmpty && passwordController.text.isNotEmpty && phoneController.text.length==10 && phoneController.text.contains(RegExp(r'^[0-9]+$')))
       {
         //start upload
         showDialog(context: context, builder: (c)
@@ -90,13 +93,31 @@ class MySignupState extends State <MySignup> {
             context: context,
             builder:(c)
             {
-              return ErrorDialog(message: "Please fill all required fields",);
+              return ErrorDialog(message: "Please fill all required fields correctly",);
             }
         );
       }
     }
   }
 
+
+
+   void getToken() async
+   {
+     final fcmToken=await FirebaseMessaging.instance.getToken();
+     setState(() {
+       mtoken=fcmToken.toString();
+     });
+     print(mtoken);
+   }
+
+   @override
+   void initState()
+   {
+     super.initState();
+     notificationServices.requestNotificationPermission();
+     getToken();
+   }
 
   void authenticateUserAndSignUp() async
   {
@@ -139,6 +160,7 @@ class MySignupState extends State <MySignup> {
       "userAvatarUrl" : usersImageUrl,
       "status" : "verified",
       "userCart": ['garbageValue'],
+      "token":mtoken,
     });
 
     //save data locally
