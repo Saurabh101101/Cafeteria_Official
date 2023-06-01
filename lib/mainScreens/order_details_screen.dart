@@ -82,26 +82,56 @@ class _OrderDetailsState extends State<OrderDetails> {
                     Center(child: orderStatus=="normal"?Image.asset("assets/images/placed.png"):orderStatus=="ready"?Image.asset("assets/images/ready1.jpg"):Image.asset("assets/images/picked.png")),
                     SizedBox(height: 50,),
 
-                    Center(
-                      child: InkWell(
-                        onTap: ()
-                        {
-                          Navigator.pop(context);
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20,top: 10),
+                          child: InkWell(
+                            onTap: ()
+                            {
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
 
-                            color: Colors.teal,
-                          ),
+                                color: Colors.teal,
+                              ),
 
-                          height:50 ,
-                          width: MediaQuery.of(context).size.width-40,
-                          child: Center(
-                            child: Text(" GO BACK",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),),
+                              height:50 ,
+                              width: 150,
+                              child: Center(
+                                child: Text(" GO BACK",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),),
+                              ),
+                            ),
                           ),
                         ),
-                      )
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10,left: 35),
+                          child: InkWell(
+                            onTap: ()
+                            {
+                              setState(() {
+
+                              });
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+
+                                color: Colors.teal,
+                              ),
+
+                              height:50 ,
+                              width: 150,
+                              child: Center(
+                                child: Text(" CHECK STATUS ",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
                     )
+
+
 
                   ],
                 ),

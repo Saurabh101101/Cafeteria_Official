@@ -41,7 +41,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                 controller: counterTextEditingController,
                 incDecBgColor: Colors.amber,
                 min: 1,
-                max: 9,
+                max: 25,
                 initialValue: 1,
                 buttonArrangement: ButtonArrangement.incRightDecLeft,
               ),
