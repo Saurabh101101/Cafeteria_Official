@@ -25,7 +25,8 @@ class _CartItemDesignState extends State<CartItemDesign> {
           height: 150,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-            border:Border.all(width: 2)
+            border:Border.all(width: 2,color: Colors.white)
+
           ),
           child: Row(
             children: [
@@ -39,13 +40,13 @@ class _CartItemDesignState extends State<CartItemDesign> {
                   children: [
                     Text(widget.model!.title!,style: const TextStyle(
                       fontSize: 18,
-                      color: Colors.teal,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),),
                     const SizedBox(height: 5,),
                     Text("Rs "+widget.model!.price!.toString(),style: const TextStyle(
                       fontSize: 18,
-                      color: Colors.teal,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),),
                     const SizedBox(height: 5,),
@@ -53,12 +54,12 @@ class _CartItemDesignState extends State<CartItemDesign> {
                       children: [
                         const Text("x ",style: TextStyle(
                           fontSize: 18,
-                          color: Colors.teal,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),),
                         Text(widget.quantityNumber.toString(),style: const TextStyle(
                           fontSize: 18,
-                          color: Colors.teal,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),),
                       ],

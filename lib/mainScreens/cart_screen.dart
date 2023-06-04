@@ -1,5 +1,6 @@
 import 'package:cafeteria_official/assistantMethods/assistant_methods.dart';
 import 'package:cafeteria_official/assistantMethods/cartItemCounter.dart';
+import 'package:cafeteria_official/assistantMethods/notification_services.dart';
 import 'package:cafeteria_official/assistantMethods/total_amount.dart';
 import 'package:cafeteria_official/mainScreens/home.dart';
 import 'package:cafeteria_official/mainScreens/placed_order_screen.dart';
@@ -8,6 +9,7 @@ import 'package:cafeteria_official/widgets/app_bar.dart';
 import 'package:cafeteria_official/widgets/cart_item_design.dart';
 import 'package:cafeteria_official/widgets/progress_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
@@ -27,14 +29,18 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> {
   List<int>? separateItemQuantityList;
+  NotificationServices notificationServices=NotificationServices();
   num totalAmount=0;
   String orderId=DateTime.now().millisecondsSinceEpoch.toString();
   String scheduledTime="";
+  String mtoken="";
 
   @override
   void initState()
   {
     super.initState();
+    notificationServices.requestNotificationPermission();
+    getToken();
 
     totalAmount=0;
     Provider.of<TotalAmount>(context,listen: false).displayTotalAmount(0);
@@ -57,6 +63,15 @@ class _CartScreenState extends State<CartScreen> {
     _razorpay.clear();
   }
 
+  void getToken() async
+  {
+    final fcmToken=await FirebaseMessaging.instance.getToken();
+    setState(() {
+      mtoken=fcmToken.toString();
+    });
+    print(mtoken);
+  }
+
 
   addOrderDetails(String date)
   {
@@ -73,6 +88,7 @@ class _CartScreenState extends State<CartScreen> {
       "pickUpTime":date,
       "orderUserName":sharedPreferences!.getString("name"),
       "userPhone":sharedPreferences!.getString("phone"),
+      "token":mtoken,
 
     });
 
@@ -90,6 +106,7 @@ class _CartScreenState extends State<CartScreen> {
       "pickUpTime":date,
       "orderUserName":sharedPreferences!.getString("name"),
       "userPhone":sharedPreferences!.getString("phone"),
+      "token":mtoken,
 
 
 
@@ -122,8 +139,11 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     String date= DateFormat('dd MMMM, yyyy').format(now);
 
-
-    return Scaffold(
+    return Container(constraints: BoxConstraints.expand(),
+        decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/bg.png'), fit: BoxFit.cover,) ),
+    child: Scaffold(
       appBar: AppBar(
         leading: IconButton(icon: Icon(Icons.delete_outline_rounded),
           onPressed:
@@ -145,6 +165,7 @@ class _CartScreenState extends State<CartScreen> {
         elevation: 0,
 
       ),
+      backgroundColor: Colors.transparent,
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -209,8 +230,9 @@ class _CartScreenState extends State<CartScreen> {
           //overall total amount
            SliverToBoxAdapter(
       child: ListTile(
-      title: Text("MY CART LIST ",style: TextStyle(
-        color: Colors.blueGrey,fontWeight: FontWeight.bold,fontSize: 18,
+      title: Text("MY CART",style: TextStyle(
+        color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18,
+          
       ),textAlign: TextAlign.center,),
       ),
           ),
@@ -220,7 +242,7 @@ class _CartScreenState extends State<CartScreen> {
               child: Center(
                 child: cartProvider.count==0?Container():Text("Total Price: ${amountProvider.tAmount.toString()} Rs",
                 style: const TextStyle(
-                  color: Colors.red,
+                  color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -278,7 +300,7 @@ class _CartScreenState extends State<CartScreen> {
 
         ],
       ),
-
+    ),
     );
   }
 
